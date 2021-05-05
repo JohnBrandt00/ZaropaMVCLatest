@@ -1,0 +1,39 @@
+﻿@model ZaropaMVC.Entities.Tiers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="ml-5 mt-5">
+    <h2>Details</h2>
+
+    <h4>Tiers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+            @foreach(var mod in Model.Shoes)
+            {
+
+                <h5 class="text-info">Shoe: <span class="text-danger">@mod.Name </span></h5>
+                <h5>Products:</h5>
+                foreach(var prod in mod.Products)
+                {
+                    <p>@prod.Name</p>
+                }
+            }
+        </dd>
+
+    </dl>
+</div>
+<p class="ml-5 mt-5">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

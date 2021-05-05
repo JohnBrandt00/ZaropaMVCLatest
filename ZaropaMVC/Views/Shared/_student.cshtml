@@ -1,0 +1,117 @@
+﻿@model ZaropaMVC.Models.StudentModels
+@using ZaropaMVC.Models
+
+
+@foreach (var tiername in Model.TierList())
+{
+    
+    foreach (var admin in Model.GetTier(tiername))
+    {
+        <div class="row justify-content-center d-flex">
+
+
+            <div class="col-3  mb-4">
+                <div class="card h-100 zaropa-color-admin wow zoomIn">
+                    <div style="max-height:28rem;">
+                        <img class="card-img-top img-fluid" src="@Url.Content(@admin.imgurl)" alt="" style="max-height:28rem;">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title h4-responsive text-center text-info">@admin.name </h4>
+                        <h5 class="white-text text-center">@admin.position</h5>
+                        @*<p class="card-text">@admin.description</p>*@
+                    </div>
+                    @*<div class="card-footer text-center black-text">
+                        <a class="btn zaropa-gradiant-redblack">Subscribe</a>
+                    </div>*@
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row justify-content-center">
+            @if(admin.Employee !=null){
+            foreach (var students in admin.Employee)
+            {
+                <div class="col-3 mb-4">
+                    <div class="card h-100 zaropa-color-employee  wow zoomIn">
+                        <div style="max-height:28rem;">
+                            <img class="card-img-top img-fluid" src="@Url.Content(students.imgurl)" alt="" style="max-height:28rem;">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title h4-responsive text-center text-info">
+                               @students.name
+                            </h4>
+                            <h5 class="white-text text-center">@students.position</h5>
+                            @*<p class="card-text white-text">@students.description</p>*@
+                        </div>
+                        @*<div class="card-footer text-center black-text">
+                            <a class="btn zaropa-gradiant-redblack">Subscribe</a>
+                        </div>*@
+                    </div>
+                </div>
+            }
+            }
+        </div>
+
+        <hr class="white w-50"/>
+    }
+
+
+
+
+}
+
+@*<div class="container-fluid">
+    
+        @foreach (var tiername in Model.TierList())
+        {
+            <div class="container-fluid row">
+                @foreach (var stu in Model.GetTier(tiername))
+                {
+                    <div class="mx-auto m-2" style="text-align:center">
+                        <div class="card mx-auto m-2 zaropa-text-color-white zaropa-color-admin wow zoomIn" style="width:300px">
+
+
+                            <img class="img-fluid" src="@Url.Content(stu.imgurl)" alt="Card image cap" style="margin:3px">
+
+
+                            <div class="card-body">
+
+                                <h3 class="card-title">@stu.name</h3>
+                                <h5 class="card-title">@stu.position</h5>
+                                <p class="card-text zaropa-text-color-white">@stu.description</p>
+
+                            </div>
+
+                        </div>
+                            @if (stu.Employee != null)
+                            {
+                                foreach (var emp in stu.Employee)
+                                {
+                                    <div class="mx-auto m-2 d-inline-block">
+                                        <div class="card  zaropa-text-color-white zaropa-color-employee wow zoomIn" style="width:280px;">
+
+
+                                            <img class="img-fluid" src="@Url.Content(emp.imgurl)" alt="Card image cap" style="margin:3px">
+
+
+                                            <div class="card-body">
+
+                                                <h3 class="card-title">@emp.name</h3>
+                                                <h5 class="card-title">@emp.position</h5>
+                                                <p class="card-text zaropa-text-color-white">@emp.description</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                                    </div>
+                                }
+            </div>
+        }
+            
+
+    </div>*@

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZaropaMVC.Models;
 
 namespace ZaropaMVC.Controllers
 {
@@ -15,7 +17,8 @@ namespace ZaropaMVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About us.";
+            ViewBag.Title = "Zaropa | About Us";
 
             return View();
         }
@@ -26,5 +29,20 @@ namespace ZaropaMVC.Controllers
 
             return View();
         }
+
+        public ActionResult GetVideo()
+        {
+            var videoPath =
+               Request.MapPath("~/Content/Mp4/Shoes-Stories.mp4");
+            FileStream fs =
+               new FileStream(videoPath, FileMode.Open);
+            return new FileStreamResult(fs, "video/mp4");
+        }
+
+
+ 
     }
+  
+
 }
+

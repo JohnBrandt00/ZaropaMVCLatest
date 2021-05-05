@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -26,6 +27,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +52,15 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="QRCoder, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.2\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -103,6 +114,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.3.2\lib\net40\UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -110,6 +124,9 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ZKWeb.System.Drawing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZKWeb.System.Drawing.4.0.0\lib\net45\ZKWeb.System.Drawing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -190,29 +207,695 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\ShoesController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TiersController.cs" />
+    <Compile Include="Controllers\TradeshowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201710230111127_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201710230111127_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201710230111127_InitialDatabaseCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
+    <Compile Include="Migrations\ZaropaContext\201710230112121_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\ZaropaContext\201710230112121_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201710230112121_InitialDatabaseCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ZaropaContext\201711182013335_SalesMigration.cs" />
+    <Compile Include="Migrations\ZaropaContext\201711182013335_SalesMigration.Designer.cs">
+      <DependentUpon>201711182013335_SalesMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ZaropaContext\201801101912364_Retails.cs" />
+    <Compile Include="Migrations\ZaropaContext\201801101912364_Retails.Designer.cs">
+      <DependentUpon>201801101912364_Retails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ZaropaContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Sales.cs" />
+    <Compile Include="Models\Shoes.cs" />
+    <Compile Include="Models\StudentModels.cs" />
+    <Compile Include="Models\Tiers.cs" />
+    <Compile Include="Models\UserRolesDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="App_Data\aspnet-ZaropaMVC-20171017113128.mdf" />
+    <Content Include="App_Data\aspnet-ZaropaMVC-20171017113128_log.ldf">
+      <DependentUpon>aspnet-ZaropaMVC-20171017113128.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ZaropaMVC4.mdf" />
+    <Content Include="App_Data\ZaropaMVC4_log.ldf">
+      <DependentUpon>ZaropaMVC4.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\1005x444.png" />
+    <Content Include="Content\bootstrap\apple-touch-icon.png" />
+    <Content Include="Content\bootstrap\build\change-version.js" />
+    <Content Include="Content\bootstrap\build\postcss.config.js" />
+    <Content Include="Content\bootstrap\build\stamp.js" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap\favicon.ico" />
+    <Content Include="Content\bootstrap\index.html" />
+    <Content Include="Content\bootstrap\js\dist\alert.js" />
+    <Content Include="Content\bootstrap\js\dist\button.js" />
+    <Content Include="Content\bootstrap\js\dist\carousel.js" />
+    <Content Include="Content\bootstrap\js\dist\collapse.js" />
+    <Content Include="Content\bootstrap\js\dist\dropdown.js" />
+    <Content Include="Content\bootstrap\js\dist\modal.js" />
+    <Content Include="Content\bootstrap\js\dist\popover.js" />
+    <Content Include="Content\bootstrap\js\dist\scrollspy.js" />
+    <Content Include="Content\bootstrap\js\dist\tab.js" />
+    <Content Include="Content\bootstrap\js\dist\tooltip.js" />
+    <Content Include="Content\bootstrap\js\dist\util.js" />
+    <Content Include="Content\bootstrap\js\src\alert.js" />
+    <Content Include="Content\bootstrap\js\src\button.js" />
+    <Content Include="Content\bootstrap\js\src\carousel.js" />
+    <Content Include="Content\bootstrap\js\src\collapse.js" />
+    <Content Include="Content\bootstrap\js\src\dropdown.js" />
+    <Content Include="Content\bootstrap\js\src\modal.js" />
+    <Content Include="Content\bootstrap\js\src\popover.js" />
+    <Content Include="Content\bootstrap\js\src\scrollspy.js" />
+    <Content Include="Content\bootstrap\js\src\tab.js" />
+    <Content Include="Content\bootstrap\js\src\tooltip.js" />
+    <Content Include="Content\bootstrap\js\src\util.js" />
+    <Content Include="Content\bootstrap\package.js" />
+    <Content Include="Content\bootstrap\robots.txt" />
+    <Content Include="Content\Mp4\Clouds_Lapse.mp4" />
+    <Content Include="Content\Mp4\the_bol.mp4" />
+    <Content Include="Content\sakura.png" />
+    <Content Include="Content\Snapcode.png" />
+    <Content Include="Content\GroupPhoto2.jpg" />
+    <Content Include="Content\jquery\AUTHORS.txt" />
+    <Content Include="Content\jquery\dist\core.js" />
+    <Content Include="Content\jquery\dist\jquery.js" />
+    <Content Include="Content\jquery\dist\jquery.min.js" />
+    <Content Include="Content\jquery\dist\jquery.slim.js" />
+    <Content Include="Content\jquery\dist\jquery.slim.min.js" />
+    <Content Include="Content\jquery\external\sizzle\dist\sizzle.js" />
+    <Content Include="Content\jquery\external\sizzle\dist\sizzle.min.js" />
+    <Content Include="Content\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="Content\jquery\LICENSE.txt" />
+    <Content Include="Content\jquery\src\ajax.js" />
+    <Content Include="Content\jquery\src\ajax\jsonp.js" />
+    <Content Include="Content\jquery\src\ajax\load.js" />
+    <Content Include="Content\jquery\src\ajax\parseXML.js" />
+    <Content Include="Content\jquery\src\ajax\script.js" />
+    <Content Include="Content\jquery\src\ajax\var\location.js" />
+    <Content Include="Content\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Content\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Content\jquery\src\ajax\xhr.js" />
+    <Content Include="Content\jquery\src\attributes.js" />
+    <Content Include="Content\jquery\src\attributes\attr.js" />
+    <Content Include="Content\jquery\src\attributes\classes.js" />
+    <Content Include="Content\jquery\src\attributes\prop.js" />
+    <Content Include="Content\jquery\src\attributes\support.js" />
+    <Content Include="Content\jquery\src\attributes\val.js" />
+    <Content Include="Content\jquery\src\callbacks.js" />
+    <Content Include="Content\jquery\src\core.js" />
+    <Content Include="Content\jquery\src\core\access.js" />
+    <Content Include="Content\jquery\src\core\DOMEval.js" />
+    <Content Include="Content\jquery\src\core\init.js" />
+    <Content Include="Content\jquery\src\core\nodeName.js" />
+    <Content Include="Content\jquery\src\core\parseHTML.js" />
+    <Content Include="Content\jquery\src\core\ready-no-deferred.js" />
+    <Content Include="Content\jquery\src\core\ready.js" />
+    <Content Include="Content\jquery\src\core\readyException.js" />
+    <Content Include="Content\jquery\src\core\stripAndCollapse.js" />
+    <Content Include="Content\jquery\src\core\support.js" />
+    <Content Include="Content\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Content\jquery\src\css.js" />
+    <Content Include="Content\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Content\jquery\src\css\adjustCSS.js" />
+    <Content Include="Content\jquery\src\css\curCSS.js" />
+    <Content Include="Content\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Content\jquery\src\css\showHide.js" />
+    <Content Include="Content\jquery\src\css\support.js" />
+    <Content Include="Content\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Content\jquery\src\css\var\getStyles.js" />
+    <Content Include="Content\jquery\src\css\var\isHiddenWithinTree.js" />
+    <Content Include="Content\jquery\src\css\var\rmargin.js" />
+    <Content Include="Content\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Content\jquery\src\css\var\swap.js" />
+    <Content Include="Content\jquery\src\data.js" />
+    <Content Include="Content\jquery\src\data\Data.js" />
+    <Content Include="Content\jquery\src\data\var\acceptData.js" />
+    <Content Include="Content\jquery\src\data\var\dataPriv.js" />
+    <Content Include="Content\jquery\src\data\var\dataUser.js" />
+    <Content Include="Content\jquery\src\deferred.js" />
+    <Content Include="Content\jquery\src\deferred\exceptionHook.js" />
+    <Content Include="Content\jquery\src\deprecated.js" />
+    <Content Include="Content\jquery\src\dimensions.js" />
+    <Content Include="Content\jquery\src\effects.js" />
+    <Content Include="Content\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Content\jquery\src\effects\Tween.js" />
+    <Content Include="Content\jquery\src\event.js" />
+    <Content Include="Content\jquery\src\event\ajax.js" />
+    <Content Include="Content\jquery\src\event\alias.js" />
+    <Content Include="Content\jquery\src\event\focusin.js" />
+    <Content Include="Content\jquery\src\event\support.js" />
+    <Content Include="Content\jquery\src\event\trigger.js" />
+    <Content Include="Content\jquery\src\exports\amd.js" />
+    <Content Include="Content\jquery\src\exports\global.js" />
+    <Content Include="Content\jquery\src\jquery.js" />
+    <Content Include="Content\jquery\src\manipulation.js" />
+    <Content Include="Content\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="Content\jquery\src\manipulation\getAll.js" />
+    <Content Include="Content\jquery\src\manipulation\setGlobalEval.js" />
+    <Content Include="Content\jquery\src\manipulation\support.js" />
+    <Content Include="Content\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Content\jquery\src\manipulation\var\rscriptType.js" />
+    <Content Include="Content\jquery\src\manipulation\var\rtagName.js" />
+    <Content Include="Content\jquery\src\manipulation\wrapMap.js" />
+    <Content Include="Content\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Content\jquery\src\offset.js" />
+    <Content Include="Content\jquery\src\queue.js" />
+    <Content Include="Content\jquery\src\queue\delay.js" />
+    <Content Include="Content\jquery\src\selector-native.js" />
+    <Content Include="Content\jquery\src\selector-sizzle.js" />
+    <Content Include="Content\jquery\src\selector.js" />
+    <Content Include="Content\jquery\src\serialize.js" />
+    <Content Include="Content\jquery\src\traversing.js" />
+    <Content Include="Content\jquery\src\traversing\findFilter.js" />
+    <Content Include="Content\jquery\src\traversing\var\dir.js" />
+    <Content Include="Content\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Content\jquery\src\traversing\var\siblings.js" />
+    <Content Include="Content\jquery\src\var\arr.js" />
+    <Content Include="Content\jquery\src\var\class2type.js" />
+    <Content Include="Content\jquery\src\var\concat.js" />
+    <Content Include="Content\jquery\src\var\document.js" />
+    <Content Include="Content\jquery\src\var\documentElement.js" />
+    <Content Include="Content\jquery\src\var\fnToString.js" />
+    <Content Include="Content\jquery\src\var\getProto.js" />
+    <Content Include="Content\jquery\src\var\hasOwn.js" />
+    <Content Include="Content\jquery\src\var\indexOf.js" />
+    <Content Include="Content\jquery\src\var\ObjectFunctionString.js" />
+    <Content Include="Content\jquery\src\var\pnum.js" />
+    <Content Include="Content\jquery\src\var\push.js" />
+    <Content Include="Content\jquery\src\var\rcssNum.js" />
+    <Content Include="Content\jquery\src\var\rnothtmlwhite.js" />
+    <Content Include="Content\jquery\src\var\slice.js" />
+    <Content Include="Content\jquery\src\var\support.js" />
+    <Content Include="Content\jquery\src\var\toString.js" />
+    <Content Include="Content\jquery\src\wrap.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\snowfall.jquery.js" />
+    <Content Include="Content\StudentPictures\Christopher Lopez Touchup.png" />
+    <Content Include="Content\StudentPictures\DanishTouchup.png" />
+    <Content Include="Content\StudentPictures\Harpreet Kaur Touchup.png" />
+    <Content Include="Content\StudentPictures\John Brandt Touchup.png" />
+    <Content Include="Content\StudentPictures\Lindsay AdomaitisTouchup.png" />
+    <Content Include="Content\StudentPictures\Lizade Rodriguez Touchup.png" />
+    <Content Include="Content\MDBootstrap\css\bootstrap.css" />
+    <Content Include="Content\MDBootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\MDBootstrap\css\mdb.css" />
+    <Content Include="Content\MDBootstrap\css\mdb.min.css" />
+    <Content Include="Content\MDBootstrap\css\style.css" />
+    <Content Include="Content\MDBootstrap\img\lightbox\default-skin.png" />
+    <Content Include="Content\MDBootstrap\img\lightbox\default-skin.svg" />
+    <Content Include="Content\MDBootstrap\img\lightbox\preloader.gif" />
+    <Content Include="Content\MDBootstrap\img\overlays\01.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\02.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\03.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\04.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\05.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\06.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\07.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\08.png" />
+    <Content Include="Content\MDBootstrap\img\overlays\09.png" />
+    <Content Include="Content\MDBootstrap\img\svg\arrow_left.svg" />
+    <Content Include="Content\MDBootstrap\img\svg\arrow_right.svg" />
+    <Content Include="Content\MDBootstrap\index.html" />
+    <Content Include="Content\MDBootstrap\js\bootstrap.js" />
+    <Content Include="Content\MDBootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\MDBootstrap\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\MDBootstrap\js\mdb.js" />
+    <Content Include="Content\MDBootstrap\js\mdb.min.js" />
+    <Content Include="Content\MDBootstrap\js\popper.min.js" />
+    <Content Include="Content\MDBootstrap\README.txt" />
+    <Content Include="Content\MDBootstrap\sass\README.txt" />
+    <Content Include="Content\Mp4\Big-City-Life.mp4" />
+    <Content Include="Content\Mp4\Shoes-Stories.mp4" />
+    <Content Include="Content\popper.js\dist\esm\popper-utils.js" />
+    <Content Include="Content\popper.js\dist\esm\popper-utils.min.js" />
+    <Content Include="Content\popper.js\dist\esm\popper.js" />
+    <Content Include="Content\popper.js\dist\esm\popper.min.js" />
+    <Content Include="Content\popper.js\dist\popper-utils.js" />
+    <Content Include="Content\popper.js\dist\popper-utils.min.js" />
+    <Content Include="Content\popper.js\dist\popper.js" />
+    <Content Include="Content\popper.js\dist\popper.min.js" />
+    <Content Include="Content\popper.js\dist\umd\popper-utils.js" />
+    <Content Include="Content\popper.js\dist\umd\popper-utils.min.js" />
+    <Content Include="Content\popper.js\dist\umd\popper.js" />
+    <Content Include="Content\popper.js\dist\umd\popper.min.js" />
+    <Content Include="Content\popper.js\docs\css\code.css" />
+    <Content Include="Content\popper.js\docs\css\font-awesome.min.css" />
+    <Content Include="Content\popper.js\docs\css\images\arrow.svg" />
+    <Content Include="Content\popper.js\docs\css\images\bars.svg" />
+    <Content Include="Content\popper.js\docs\css\images\close.svg" />
+    <Content Include="Content\popper.js\docs\css\popper.css" />
+    <Content Include="Content\popper.js\docs\documentation.html" />
+    <Content Include="Content\popper.js\docs\favicon-16x16.png" />
+    <Content Include="Content\popper.js\docs\favicon-32x32.png" />
+    <Content Include="Content\popper.js\docs\favicon-96x96.png" />
+    <Content Include="Content\popper.js\docs\favicon.ico" />
+    <Content Include="Content\popper.js\docs\feed.xml" />
+    <Content Include="Content\popper.js\docs\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\popper.js\docs\images\banner.jpg" />
+    <Content Include="Content\popper.js\docs\images\banner.png" />
+    <Content Include="Content\popper.js\docs\images\logo.png" />
+    <Content Include="Content\popper.js\docs\images\pic01.jpg" />
+    <Content Include="Content\popper.js\docs\images\pic02.jpg" />
+    <Content Include="Content\popper.js\docs\images\pic03.jpg" />
+    <Content Include="Content\popper.js\docs\images\pic04.jpg" />
+    <Content Include="Content\popper.js\docs\images\pic05.jpg" />
+    <Content Include="Content\popper.js\docs\index.html" />
+    <Content Include="Content\popper.js\docs\js\ie\backgroundsize.min.htc" />
+    <Content Include="Content\popper.js\docs\js\ie\html5shiv.js" />
+    <Content Include="Content\popper.js\docs\js\ie\respond.min.js" />
+    <Content Include="Content\popper.js\docs\js\jquery.min.js" />
+    <Content Include="Content\popper.js\docs\js\jquery.nanoscroller.js" />
+    <Content Include="Content\popper.js\docs\js\jquery.scrollex.min.js" />
+    <Content Include="Content\popper.js\docs\js\jquery.scrolly.min.js" />
+    <Content Include="Content\popper.js\docs\js\main.js" />
+    <Content Include="Content\popper.js\docs\js\skel.min.js" />
+    <Content Include="Content\popper.js\docs\js\util.js" />
+    <Content Include="Content\popper.js\docs\LICENSE.txt" />
+    <Content Include="Content\popper.js\docs\popper-documentation.html" />
+    <Content Include="Content\popper.js\docs\README.txt" />
+    <Content Include="Content\popper.js\docs\tooltip-documentation.html" />
+    <Content Include="Content\popper.js\docs\tooltip-examples.html" />
+    <Content Include="Content\popper.js\docs\_includes\example10-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example10.html" />
+    <Content Include="Content\popper.js\docs\_includes\example10t-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example10t.html" />
+    <Content Include="Content\popper.js\docs\_includes\example20-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example20.html" />
+    <Content Include="Content\popper.js\docs\_includes\example20t-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example20t.html" />
+    <Content Include="Content\popper.js\docs\_includes\example30-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example30.html" />
+    <Content Include="Content\popper.js\docs\_includes\example40-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example40.html" />
+    <Content Include="Content\popper.js\docs\_includes\example50-code.html" />
+    <Content Include="Content\popper.js\docs\_includes\example50.html" />
+    <Content Include="Content\popper.js\docs\_includes\footer.html" />
+    <Content Include="Content\popper.js\docs\_includes\head.html" />
+    <Content Include="Content\popper.js\docs\_includes\header.html" />
+    <Content Include="Content\popper.js\docs\_includes\scripts.html" />
+    <Content Include="Content\popper.js\docs\_layouts\default.html" />
+    <Content Include="Content\popper.js\docs\_layouts\landing.html" />
+    <Content Include="Content\popper.js\docs\_layouts\page-hashtag.html" />
+    <Content Include="Content\popper.js\docs\_layouts\page-nowrap.html" />
+    <Content Include="Content\popper.js\docs\_layouts\page.html" />
+    <Content Include="Content\popper.js\packages\babel-config\index.js" />
+    <Content Include="Content\popper.js\packages\bundle\index.js" />
+    <Content Include="Content\popper.js\packages\eslint-config-popper\index.js" />
+    <Content Include="Content\popper.js\packages\popper\bundle.js" />
+    <Content Include="Content\popper.js\packages\popper\src\index.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\defaults.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\destroy.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\disableEventListeners.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\enableEventListeners.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\placements.js" />
+    <Content Include="Content\popper.js\packages\popper\src\methods\update.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\applyStyle.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\arrow.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\computeStyle.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\flip.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\hide.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\index.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\inner.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\keepTogether.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\offset.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\preventOverflow.js" />
+    <Content Include="Content\popper.js\packages\popper\src\modifiers\shift.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\clockwise.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\computeAutoPlacement.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\debounce.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\find.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\findIndex.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getBordersSize.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getBoundaries.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getBoundingClientRect.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getClientRect.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOffsetParent.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOffsetRect.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOppositePlacement.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOppositeVariation.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getOuterSizes.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getParentNode.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getPopperOffsets.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getReferenceOffsets.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getRoot.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getScroll.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getScrollParent.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\getWindowSizes.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\includeScroll.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\index.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isFixed.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isFunction.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isIE10.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isModifierEnabled.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isModifierRequired.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isNative.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isNumeric.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\isOffsetContainer.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\removeEventListeners.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\runModifiers.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\setAttributes.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\setStyles.js" />
+    <Content Include="Content\popper.js\packages\popper\src\utils\setupEventListeners.js" />
+    <Content Include="Content\popper.js\packages\test-utils\setup.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\appendNewPopper.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\appendNewRef.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\customEventPolyfill.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\getRect.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\isMSBrowser.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\makeConnectedElement.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\makeConnectedScrollElement.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\makeElement.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\prepend.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\simulateScroll.js" />
+    <Content Include="Content\popper.js\packages\test-utils\utils\then.js" />
+    <Content Include="Content\popper.js\packages\test\bin\karma.js" />
+    <Content Include="Content\popper.js\packages\test\karma.conf.js" />
+    <Content Include="Content\popper.js\packages\tooltip\bundle.js" />
+    <Content Include="Content\popper.js\packages\tooltip\src\index.js" />
+    <Content Include="Content\popper.js\popperjs.png" />
+    <Content Include="Content\smooth-scroll.js" />
+    <Content Include="Content\Snapshots\Big-City-Life.jpg" />
+    <Content Include="Content\StudentPictures\Arietty Ortiz.JPG" />
+    <Content Include="Content\StudentPictures\PLACEHOLDER.png" />
+    <Content Include="Content\StudentPictures\Saimun Touchup.png" />
+    <Content Include="Content\StudentPictures\Shelby Suarez Touchup.png" />
+    <Content Include="Content\StudentPictures\student_arietty.png" />
+    <Content Include="Content\StudentPictures\student_chris.png" />
+    <Content Include="Content\StudentPictures\student_danish.png" />
+    <Content Include="Content\StudentPictures\student_emily.png" />
+    <Content Include="Content\StudentPictures\student_harpreet.png" />
+    <Content Include="Content\StudentPictures\student_john.png" />
+    <Content Include="Content\StudentPictures\student_lindsay.png" />
+    <Content Include="Content\StudentPictures\student_lizade.png" />
+    <Content Include="Content\StudentPictures\student_saimun.png" />
+    <Content Include="Content\StudentPictures\student_sean.png" />
+    <Content Include="Content\StudentPictures\student_shelby.png" />
+    <Content Include="Content\StudentPictures\student_ty.png" />
+    <Content Include="Content\StudentPictures\Ty Allen %281%29.jpg" />
+    <Content Include="Content\StudentPictures\Ty Allen Touchup.png" />
+    <Content Include="Content\shop_news_1.png" />
+    <Content Include="Content\test.png" />
+    <Content Include="Content\us.png" />
+    <Content Include="Content\us2.png" />
+    <Content Include="Content\Webm\Big-City-Life.webm" />
+    <Content Include="Content\Webm\Shoes-Stories.webm" />
+    <Content Include="Content\ZaropaLogo.png" />
+    <Content Include="Content\ZaropaLogoSpring.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\bootstrap\.bower.json" />
+    <Content Include="Content\bootstrap\bower.json" />
+    <Content Include="Content\bootstrap\build\.htmllintrc" />
+    <Content Include="Content\bootstrap\build\gcp-key.json.enc" />
+    <Content Include="Content\bootstrap\build\lint-vars.sh" />
+    <Content Include="Content\bootstrap\build\sauce_browsers.yml" />
+    <Content Include="Content\bootstrap\build\uglifyjs.config.json" />
+    <Content Include="Content\bootstrap\build\upload-preview.sh" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap\Gemfile" />
+    <Content Include="Content\bootstrap\Gemfile.lock" />
+    <Content Include="Content\bootstrap\js\.eslintrc.json" />
+    <Content Include="Content\bootstrap\js\dist\alert.js.map" />
+    <Content Include="Content\bootstrap\js\dist\button.js.map" />
+    <Content Include="Content\bootstrap\js\dist\carousel.js.map" />
+    <Content Include="Content\bootstrap\js\dist\collapse.js.map" />
+    <Content Include="Content\bootstrap\js\dist\dropdown.js.map" />
+    <Content Include="Content\bootstrap\js\dist\modal.js.map" />
+    <Content Include="Content\bootstrap\js\dist\popover.js.map" />
+    <Content Include="Content\bootstrap\js\dist\scrollspy.js.map" />
+    <Content Include="Content\bootstrap\js\dist\tab.js.map" />
+    <Content Include="Content\bootstrap\js\dist\tooltip.js.map" />
+    <Content Include="Content\bootstrap\js\dist\util.js.map" />
+    <Content Include="Content\bootstrap\LICENSE" />
+    <Content Include="Content\bootstrap\package-lock.json" />
+    <Content Include="Content\bootstrap\package.json" />
+    <Content Include="Content\bootstrap\README.md" />
+    <Content Include="Content\bootstrap\sache.json" />
+    <Content Include="Content\bootstrap\scss\bootstrap-grid.scss" />
+    <Content Include="Content\bootstrap\scss\bootstrap-reboot.scss" />
+    <Content Include="Content\bootstrap\scss\bootstrap.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_alert.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_background-variant.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_badge.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_border-radius.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_box-shadow.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_breakpoints.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_buttons.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_clearfix.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_float.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_forms.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_gradients.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_grid-framework.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_grid.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_hover.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_image.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_list-group.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_lists.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_nav-divider.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_navbar-align.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_pagination.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_reset-text.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_resize.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_screen-reader.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_size.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_table-row.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_text-emphasis.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_text-hide.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_text-truncate.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_transition.scss" />
+    <Content Include="Content\bootstrap\scss\mixins\_visibility.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_align.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_background.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_borders.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_clearfix.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_display.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_embed.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_flex.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_float.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_position.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_screenreaders.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_sizing.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_spacing.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_text.scss" />
+    <Content Include="Content\bootstrap\scss\utilities\_visibility.scss" />
+    <Content Include="Content\bootstrap\scss\_alert.scss" />
+    <Content Include="Content\bootstrap\scss\_badge.scss" />
+    <Content Include="Content\bootstrap\scss\_breadcrumb.scss" />
+    <Content Include="Content\bootstrap\scss\_button-group.scss" />
+    <Content Include="Content\bootstrap\scss\_buttons.scss" />
+    <Content Include="Content\bootstrap\scss\_card.scss" />
+    <Content Include="Content\bootstrap\scss\_carousel.scss" />
+    <Content Include="Content\bootstrap\scss\_close.scss" />
+    <Content Include="Content\bootstrap\scss\_code.scss" />
+    <Content Include="Content\bootstrap\scss\_custom-forms.scss" />
+    <Content Include="Content\bootstrap\scss\_dropdown.scss" />
+    <Content Include="Content\bootstrap\scss\_forms.scss" />
+    <Content Include="Content\bootstrap\scss\_functions.scss" />
+    <Content Include="Content\bootstrap\scss\_grid.scss" />
+    <Content Include="Content\bootstrap\scss\_images.scss" />
+    <Content Include="Content\bootstrap\scss\_input-group.scss" />
+    <Content Include="Content\bootstrap\scss\_jumbotron.scss" />
+    <Content Include="Content\bootstrap\scss\_list-group.scss" />
+    <Content Include="Content\bootstrap\scss\_media.scss" />
+    <Content Include="Content\bootstrap\scss\_mixins.scss" />
+    <Content Include="Content\bootstrap\scss\_modal.scss" />
+    <Content Include="Content\bootstrap\scss\_nav.scss" />
+    <Content Include="Content\bootstrap\scss\_navbar.scss" />
+    <Content Include="Content\bootstrap\scss\_pagination.scss" />
+    <Content Include="Content\bootstrap\scss\_popover.scss" />
+    <Content Include="Content\bootstrap\scss\_print.scss" />
+    <Content Include="Content\bootstrap\scss\_progress.scss" />
+    <Content Include="Content\bootstrap\scss\_reboot.scss" />
+    <Content Include="Content\bootstrap\scss\_tables.scss" />
+    <Content Include="Content\bootstrap\scss\_tooltip.scss" />
+    <Content Include="Content\bootstrap\scss\_transitions.scss" />
+    <Content Include="Content\bootstrap\scss\_type.scss" />
+    <Content Include="Content\bootstrap\scss\_utilities.scss" />
+    <Content Include="Content\bootstrap\scss\_variables.scss" />
+    <Content Include="Content\jquery\.bower.json" />
+    <Content Include="Content\jquery\bower.json" />
+    <Content Include="Content\jquery\dist\jquery.min.map" />
+    <Content Include="Content\jquery\dist\jquery.slim.min.map" />
+    <Content Include="Content\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="Content\jquery\README.md" />
+    <Content Include="Content\jquery\src\.eslintrc.json" />
+    <Content Include="Content\MDBootstrap\.bower.json" />
+    <Content Include="Content\MDBootstrap\bower.json" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-Bold.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-BoldItalic.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-ExtaBlack.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-ExtraBlackItalic.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-ExtraLight.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-ExtraLightItalic.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-Heavy.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-HeavyItalic.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-Italic.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria-Light.otf" />
+    <Content Include="Content\MDBootstrap\font\Geometria\Geometria.otf" />
+    <Content Include="Content\MDBootstrap\font\Raleway\Raleway-Light.otf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Bold.eot" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Bold.ttf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Bold.woff" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Bold.woff2" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Light.eot" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Light.ttf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Light.woff" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Light.woff2" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Medium.eot" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Medium.ttf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Medium.woff" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Medium.woff2" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Regular.eot" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Regular.ttf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Regular.woff" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Regular.woff2" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Thin.eot" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Thin.ttf" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Thin.woff" />
+    <Content Include="Content\MDBootstrap\font\roboto\Roboto-Thin.woff2" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Black.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-BlackItalic.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Bold.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-BoldItalic.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Italic.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Light.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-LightItalic.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Medium.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-MediumItalic.ttf" />
+    <Content Include="Content\MDBootstrap\font\Rubik\Rubik-Regular.ttf" />
+    <Content Include="Content\MDBootstrap\License.pdf" />
+    <Content Include="Content\MDBootstrap\package.json" />
+    <Content Include="Content\MDBootstrap\README.md" />
+    <Content Include="Content\MDBootstrap\sass\mdb.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_colors.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_functions.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_mixins.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_prefixer.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_variables-b4.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\data\_variables.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_animations.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_badge.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_breadcrumb.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_buttons.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_cards-basic.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_carousel-basic.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_collapse.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_deprecated.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_dropdowns.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_footer.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_forms-basic.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_global.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_helpers.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_jumbotron.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_list-group.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_masks.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_modals.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_msc.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_navbar.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_pagination.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_progress.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_tables.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_typography.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\free\_waves.scss" />
+    <Content Include="Content\MDBootstrap\sass\mdb\_custom.scss" />
+    <Content Include="Content\popper.js\.bower.json" />
+    <Content Include="Content\popper.js\bower.json" />
+    <Content Include="Content\popper.js\CHANGELOG.md" />
+    <Content Include="Content\popper.js\CODE_OF_CONDUCT.md" />
+    <Content Include="Content\popper.js\CONTRIBUTING.md" />
+    <Content Include="Content\popper.js\dist\esm\popper-utils.js.map" />
+    <Content Include="Content\popper.js\dist\esm\popper-utils.min.js.map" />
+    <Content Include="Content\popper.js\dist\esm\popper.js.map" />
+    <Content Include="Content\popper.js\dist\esm\popper.min.js.map" />
+    <Content Include="Content\popper.js\dist\popper-utils.js.map" />
+    <Content Include="Content\popper.js\dist\popper-utils.min.js.map" />
+    <Content Include="Content\popper.js\dist\popper.js.map" />
+    <Content Include="Content\popper.js\dist\popper.min.js.map" />
+    <Content Include="Content\popper.js\dist\umd\popper-utils.js.map" />
+    <Content Include="Content\popper.js\dist\umd\popper-utils.min.js.map" />
+    <Content Include="Content\popper.js\dist\umd\popper.js.map" />
+    <Content Include="Content\popper.js\dist\umd\popper.min.js.map" />
+    <Content Include="Content\popper.js\docs\CNAME" />
+    <Content Include="Content\popper.js\docs\css\ie8.scss" />
+    <Content Include="Content\popper.js\docs\css\ie9.scss" />
+    <Content Include="Content\popper.js\docs\css\main.scss" />
+    <Content Include="Content\popper.js\docs\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\popper.js\docs\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\popper.js\docs\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\popper.js\docs\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\popper.js\docs\fonts\FontAwesome.otf" />
+    <Content Include="Content\popper.js\docs\_config.yml" />
+    <Content Include="Content\popper.js\docs\_includes\popper-documentation.md" />
+    <Content Include="Content\popper.js\docs\_includes\tooltip-documentation.md" />
+    <Content Include="Content\popper.js\docs\_sass\libs\_functions.scss" />
+    <Content Include="Content\popper.js\docs\_sass\libs\_mixins.scss" />
+    <Content Include="Content\popper.js\docs\_sass\libs\_skel.scss" />
+    <Content Include="Content\popper.js\docs\_sass\libs\_vars.scss" />
+    <Content Include="Content\popper.js\lerna.json" />
+    <Content Include="Content\popper.js\LICENSE.md" />
+    <Content Include="Content\popper.js\MENTIONS.md" />
+    <Content Include="Content\popper.js\package.json" />
+    <Content Include="Content\popper.js\packages\babel-config\package.json" />
+    <Content Include="Content\popper.js\packages\babel-config\yarn.lock" />
+    <Content Include="Content\popper.js\packages\bundle\package.json" />
+    <Content Include="Content\popper.js\packages\bundle\yarn.lock" />
+    <Content Include="Content\popper.js\packages\eslint-config-popper\package.json" />
+    <Content Include="Content\popper.js\packages\eslint-config-popper\yarn.lock" />
+    <Content Include="Content\popper.js\packages\popper\bower-publish.sh" />
+    <Content Include="Content\popper.js\packages\popper\bower.json" />
+    <Content Include="Content\popper.js\packages\popper\package.json" />
+    <Content Include="Content\popper.js\packages\test-utils\package.json" />
+    <Content Include="Content\popper.js\packages\test-utils\yarn.lock" />
+    <Content Include="Content\popper.js\packages\test\package.json" />
+    <Content Include="Content\popper.js\packages\test\README.md" />
+    <Content Include="Content\popper.js\packages\tooltip\package.json" />
+    <Content Include="Content\popper.js\packages\tooltip\yarn.lock" />
+    <Content Include="Content\popper.js\README.md" />
+    <Content Include="Content\popper.js\yarn.lock" />
+    <Compile Include="DAL\ZaropaContext.cs" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -224,14 +907,18 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -258,9 +945,39 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_student.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Tiers\Create.cshtml" />
+    <Content Include="Views\Tiers\Delete.cshtml" />
+    <Content Include="Views\Tiers\Details.cshtml" />
+    <Content Include="Views\Tiers\Edit.cshtml" />
+    <Content Include="Views\Tiers\Index.cshtml" />
+    <Content Include="Views\Shoes\Create.cshtml" />
+    <Content Include="Views\Shoes\Delete.cshtml" />
+    <Content Include="Views\Shoes\Details.cshtml" />
+    <Content Include="Views\Shoes\Edit.cshtml" />
+    <Content Include="Views\Shoes\Index.cshtml" />
+    <Content Include="Views\Shared\_TierList.cshtml" />
+    <Content Include="Views\Products\ProductPage.cshtml" />
+    <Content Include="Views\Tiers\TiersPage.cshtml" />
+    <Content Include="Views\Products\ShowProduct.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Delete.cshtml" />
+    <Content Include="Views\Sales\Details.cshtml" />
+    <Content Include="Views\Sales\Edit.cshtml" />
+    <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Admin\Manage.cshtml" />
+    <Content Include="Views\Tradeshow\Index.cshtml" />
+    <Content Include="Views\Tradeshow\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -275,11 +992,32 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\popper.js\packages\popper\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201710230111127_InitialDatabaseCreation.resx">
+      <DependentUpon>201710230111127_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ZaropaContext\201710230112121_InitialDatabaseCreation.resx">
+      <DependentUpon>201710230112121_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ZaropaContext\201711182013335_SalesMigration.resx">
+      <DependentUpon>201711182013335_SalesMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ZaropaContext\201801101912364_Retails.resx">
+      <DependentUpon>201801101912364_Retails.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

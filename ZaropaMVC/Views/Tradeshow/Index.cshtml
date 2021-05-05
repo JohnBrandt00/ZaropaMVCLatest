@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Trade Show | Zaropa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Drawing;
+@using ZaropaMVC.Entities;
+@{ 
+    var x = Color.Violet;
+}
+huh
+<div class="container-fluid text-center" style="margin-top:1.5rem"> 
+   
+
+
+    @foreach (Employees employee in Enum.GetValues(typeof(Employees)))
+    {
+        <img class="m-1" style="width:300px;height:300px" src="@Url.Action("GenerateUrlQR","Tradeshow", new {  url= "http://zaropa.me" + @Url.Action("Purchase", "Tradeshow",
+                                                          new { employees = employee, Url = "https://portal.veinternational.org/buybuttons/us011850/btn/diamond-bundle-235901/" }),
+                                                          col1 = "Purple",col2 = "White",label = @employee+" Diamond Bundle" })" />
+                                                        <img class="m-1" style="width:300px;height:300px" src="@Url.Action("GenerateUrlQR","Tradeshow", new {  url="http://zaropa.me"+@Url.Action("Purchase", "Tradeshow",
+                                                           new { employees = employee, Url = "https://portal.veinternational.org/buybuttons/us011850/btn/silver-package-2351/" }),
+                                                           col1 = "DarkSlateGray",col2 = "White" ,label = @employee+" Silver Tier"})" />
+                                                        <img class="m-1" style="width:300px;height:300px" src="@Url.Action("GenerateUrlQR","Tradeshow", new {  url="http://zaropa.me" + @Url.Action("Purchase", "Tradeshow",
+                                                          new { employees = employee, Url = "https://portal.veinternational.org/buybuttons/us011850/btn/gold-package-2352/" }),
+                                                           col1 = "DarkGoldenrod",col2 = "White",label = @employee+" Gold Tier" })" />
+                                                        <img class="m-1" style="width:300px;height:300px" src="@Url.Action("GenerateUrlQR","Tradeshow", new {  url="http://zaropa.me" + @Url.Action("Purchase", "Tradeshow",
+                                                          new { employees = employee, Url = "https://portal.veinternational.org/buybuttons/us011850/btn/platinum-package-2353/" }),
+                                                           col1 = "CadetBlue",col2 = "White",label = @employee+" Platinum Tier" })" />
+                                                        <img class="m-1" style="width:300px;height:300px" src="@Url.Action("GenerateUrlQR","Tradeshow", new {  url="http://zaropa.me" + @Url.Action("Purchase", "Tradeshow",
+                                                          new { employees = employee, Url = "https://portal.veinternational.org/buybuttons/us011850/btn/diamond-package-2354/" }),
+                                                           col1 = "CornflowerBlue",col2 = "White",label = @employee+" Diamond Tier" })" />
+    }
+
+
+</div>
+
+
+
+
+<script>
+    //$(function () {
+    //    window.location = "https://portal.veinternational.org/buybuttons/us011850/btn/diamond-package-2354/";
+
+    //});
+</script>

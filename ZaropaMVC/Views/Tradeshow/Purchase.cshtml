@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Purchase</h2>
+
+@ViewBag.Employee
+
+<script>
+    $(function () {
+
+        window.location.replace("@ViewBag.Url")
+
+    });
+</script>

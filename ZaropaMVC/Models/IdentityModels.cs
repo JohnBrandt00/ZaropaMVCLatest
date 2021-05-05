@@ -21,13 +21,22 @@ namespace ZaropaMVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnectionZaropa", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ZaropaMVC.Models.StudentModels> StudentModels { get; set; }
+
+        public System.Data.Entity.DbSet<ZaropaMVC.Models.UserAndRolesDTO> UserAndRolesDTOes { get; set; }
+
+        public System.Data.Entity.DbSet<ZaropaMVC.Models.Admin> Admins { get; set; }
+
+        public System.Data.Entity.DbSet<ZaropaMVC.Models.ExpandedUserDTO> ExpandedUserDTOes { get; set; }
     }
 }

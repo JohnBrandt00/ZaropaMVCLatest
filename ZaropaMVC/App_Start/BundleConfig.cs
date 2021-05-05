@@ -20,12 +20,24 @@ namespace ZaropaMVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Content/MDBootstrap/js/popper.min.js",
+                "~/Scripts/jquery-1.10.2.js",
+                      "~/Content/MDBootstrap/js/bootstrap.js",
+                      "~/Content/MDBootstrap/js/bootstrap.min.js",
+                      "~/Content/MDBootstrap/js/jquery-3.2.1.min.js",
+                      "~/Content/MDBootstrap/js/mdb.js",
+                      "~/Content/smooth-scroll.js",
+                      "~/Content/MDBootstrap/js/mdb.min.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/MDBootstrap/css/bootstrap.css",
+                      "~/Content/MDBootstrap/css/bootstrap.min.css",
+                      "~/Content/MDBootstrap/css/mdb.css",
+                      "~/Content/MDBootstrap/css/mdb.min.css",
+                      "~/Content/MDBootstrap/css/style.css"
+                      //"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
+                      ));
         }
     }
 }

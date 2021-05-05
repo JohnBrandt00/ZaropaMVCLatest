@@ -1,0 +1,40 @@
+﻿@model ZaropaMVC.Entities.Product
+
+@{
+    ViewBag.Title = Model.Name + " | Zaropa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ var Product = Model;}
+
+<div class="mt-5 container w-75 white align-middle" >
+
+    <div class="row zaropa-seasonal-productpagecolor">
+       
+
+        <div class="col-5 p-1 zaropa-seasonal-productpagecolor" >
+            <img class="img-fluid border border-primary" src="@Url.Content("~/Images/"+Product.ImageUrl)" alt="Product Image" />
+        </div>
+       
+        <div class="col-7 mt-3">
+            <h1 class="zaropa-text-color-red text-center text-uppercase">@Product.Name</h1>
+                <hr class="grey w-75"/>
+
+            <!--Product Body-->
+            <div class="container-fluid black-text">
+                <h4 class="text-uppercase text-info" >@Product.Shoes.Tiers.Name monthly price: $@Product.Shoes.Tiers.Price </h4>
+                <h5 class="text-uppercase text-danger">Retail price: @Product.RetailPrice </h5>
+                <h5 class="text-uppercase text-info">@Product.Shoes.Name</h5>
+                <h5 class="text-uppercase text-info">@Product.Genders.ToString() 's outfit</h5>
+                <hr class="w-25"/> 
+                <p class="lead text-center">@Html.Raw( @Product.Description)</p>
+            </div>
+
+            <hr class="w-75"/>
+            <div class="col-12 mt-5 text-center">
+                <a class="btn zaropa-gradiant-redblack mb-5 px-5 py-3" href="@Product.BuyButton">Subscribe to purchase</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

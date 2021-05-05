@@ -1,0 +1,76 @@
+﻿@model ZaropaMVC.Entities.Sales
+
+@{
+    ViewBag.Title = "Employee Sale Details | Zaropa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mt-5"></div>
+<h2 class="text-center">Sale Details</h2>
+
+<div>
+    <h4 class="text-center">Employee:  <span class="text-danger">@Model.Employees</span></h4>
+    <hr />
+
+
+            @*@Html.DisplayNameFor(model => model.Employees)
+
+            @Html.DisplayFor(model => model.Employees)*@
+    
+    <table class="table table-bordered white black-text">
+        <thead class="blue-grey zaropa-color-employee white-text font-bold">
+            <tr>
+                <th>
+                    Employee Name
+                </th>
+
+                   <th>
+                       Firm Name
+                   </th>
+
+                <th>
+                    Firm Email
+                </th>
+
+                <th>
+                    Firm Phone Number
+                </th>
+
+                <th>
+                    Date/Time
+                </th>
+
+                <th>
+                    Sale Status
+                </th>
+
+                </tr>
+                </thead>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(Model => Model.Employees)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(Model => Model.FirmName)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(Model => Model.FirmEmail)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(Model => Model.FirmPhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(Model => Model.DateTime)
+                        </th>
+                        <th>
+                            @Html.DisplayFor(Model => Model.SaleStatus)
+                        </th>
+                    </tr>
+
+    </table>
+
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack px-3 z-depth-0" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack px-3 z-depth-0" })
+</p>

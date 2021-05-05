@@ -1,0 +1,191 @@
+﻿@model IEnumerable<ZaropaMVC.Entities.Sales>
+
+@{
+    ViewBag.Title = "Sales Manager | Zaropa";
+ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mt-5 text-center">Sales Manager </h2>
+<hr class="white"/>
+<div class="row">
+    <div class="mx-auto col-6">
+        <canvas id="lineChart" style="background-color:rgb(255, 255, 255);display: block;"></canvas>
+    </div>
+    <div class="mx-auto col-6">
+        <canvas id="barChart" style="background-color:rgb(255, 255, 255);display: block;"></canvas>
+    </div>
+</div>
+
+<hr class="white" />
+
+<p class="">
+    @Html.ActionLink("Add Record", "Create", null, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack px-5 z-depth-0" })
+</p>
+
+
+<table class="table table-bordered white black-text table-striped">
+    <thead class="blue-grey zaropa-color-employee white-text font-bold" >
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Employees)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.FirmName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.FirmEmail)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.FirmPhoneNumber)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.SaleStatus)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Profit)
+            </th>
+            <th class="text-center"> Manage </th>
+        </tr>
+        </thead>
+        @foreach (var item in Model.OrderByDescending(sale => sale.DateTime)  )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirmName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirmEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirmPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                @{
+                    Dictionary<ZaropaMVC.Entities.SaleStatus, string> dictionary = new Dictionary<ZaropaMVC.Entities.SaleStatus, string>();
+                    dictionary.Add(ZaropaMVC.Entities.SaleStatus.Rejected, "sale-rejected");
+                    dictionary.Add(ZaropaMVC.Entities.SaleStatus.Contacted, "sale-contacted");
+                    dictionary.Add(ZaropaMVC.Entities.SaleStatus.Negotiation, "sale-negotation");
+                    dictionary.Add(ZaropaMVC.Entities.SaleStatus.ProcessingSale, "sale-pending");
+                    dictionary.Add(ZaropaMVC.Entities.SaleStatus.CompletedSale, "sale-completed");
+
+                    Dictionary<ZaropaMVC.Entities.SaleStatus, string> icons = new Dictionary<ZaropaMVC.Entities.SaleStatus, string>();
+                    icons.Add(ZaropaMVC.Entities.SaleStatus.Rejected, "fa fa-times-circle");
+                    icons.Add(ZaropaMVC.Entities.SaleStatus.Contacted, "fa fa-info-circle");
+                    icons.Add(ZaropaMVC.Entities.SaleStatus.Negotiation, "fa fa-exclamation-circle");
+                    icons.Add(ZaropaMVC.Entities.SaleStatus.ProcessingSale, "fa fa-question-circle");
+                    icons.Add(ZaropaMVC.Entities.SaleStatus.CompletedSale, "fa fa-check-circle");
+
+                }
+                <td class="no-padding">
+   
+                        @*<div class="container-fluid ">
+                            @Html.DisplayFor(modelItem => item.SaleStatus)
+                        </div>*@
+                    
+                    <div class="sale @dictionary[item.SaleStatus]"><i class="@icons[item.SaleStatus]"></i></div></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profit)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "zaropa-a-override" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "zaropa-a-override" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "zaropa-a-override" })
+                </td>
+            </tr>
+                    }
+
+</table>
+
+
+
+<script>
+    $(function () {
+        var ctxL = document.getElementById("lineChart").getContext('2d');
+        var myLineChart = new Chart(ctxL, {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+                datasets: [
+                    {
+                        label: "Profits By Month",
+                        data: [
+                            @Model.Where(i => i.DateTime.Month == 1 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 2 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 3 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 4 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 5 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 6 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 7 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 8 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 9 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 10 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 11 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit),
+                            @Model.Where(i => i.DateTime.Month == 12 && i.DateTime.Year == DateTime.Now.Year && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Sum(i => i.Profit)
+                        ],
+                        borderColor: "rgb(100,50,200)"
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+
+                
+            }
+        });
+
+
+        var ctxB = document.getElementById("barChart").getContext('2d');
+        var myBarChart = new Chart(ctxB, {
+            type: 'bar',
+            data: {
+
+                labels: ["Lizade","Arietty","Chris","Ty","Danish","John","Saimun","Lindsay","Sean","Shelby","Harpreet","Emily","Other"],
+                datasets: [{
+                    label: 'All Time Sales Per Employee',
+                    data: [
+                        @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Lizade && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                         @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Arietty && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                         @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Christopher && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                         @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Ty && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                          @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Danish && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                          @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.John && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                           @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Saimun && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                           @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Lindsay && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                            @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Sean && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                            @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Shelby && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                             @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Harpreet && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                             @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Emily && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count(),
+                             @Model.Where(i => i.Employees == ZaropaMVC.Entities.Employees.Other && i.SaleStatus == ZaropaMVC.Entities.SaleStatus.CompletedSale).Count()
+                    ],
+                    backgroundColor: 'rgba(100,50,200,0.3)',
+
+                    borderColor:'rgb(100,50,200)',
+
+                    
+                    borderWidth: 1
+                }]
+            },
+            optionss: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+    });
+   
+</script>

@@ -1,7 +1,41 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@model IEnumerable<ZaropaMVC.Models.StudentModels>
+@{
+    ViewBag.Title = "About Us | Zaropa";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+<div class="container-fluid mt-5 pt-5 w-100" style="width:100%;height:auto;">
+    <h1 class="display-3 text-center mt-5 zaropa-text-color-white wow zoomIn">Get to Know Us</h1>
+    <hr class="white text-center mt-2 wow zoomIn" width="50%" />
+  <div class="row">
+      <div class="card-body text-center">
+
+       <h4 class="card-title zaropa-text-color-white wow zoomIn">The Brains Behind Zaropa</h4>
+
+  <img class="rounded wow zoomIn w-75" src="~/Content/us2.png" />
+     <div class="mx-auto">
+         
+    <br/>
+    <p class="card-text zaropa-text-color-white wow zoomIn px-1 w-100">
+        Zaropa is a monthly subscription service that sells customized outfits in a
+        unique and convenient allowing our consumers to select stylish outfits.  Consumers
+        choose their favorite shoe, and we at Zaropa create a stylish outfit based on the
+        selection of shoe. We have four different tiers depending on the brands, and how
+        much consumer chooses to spend on their outfit. Our goal is to create brand loyal
+        consumer who will rely on us to keep them in style, and up to date with the latest
+        fashion trends. And remember style is in our soles!
+
+    </p>
+    <hr class="white" />
+   </div>
+  </div>
+   </div>
+    
+    <div style="min-width:995px">
+    @{
+        Html.RenderAction("Index", "Student");
+    }
+     </div>
+  
+
+</div>

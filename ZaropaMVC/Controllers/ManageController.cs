@@ -79,6 +79,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="none")]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
@@ -101,6 +102,7 @@ namespace ZaropaMVC.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        [Authorize(Roles = "none")]
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -110,6 +112,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
@@ -134,6 +137,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
@@ -149,6 +153,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
             await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
@@ -162,6 +167,7 @@ namespace ZaropaMVC.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -173,6 +179,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
@@ -198,6 +205,7 @@ namespace ZaropaMVC.Controllers
         // POST: /Manage/RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "none")]
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
@@ -246,6 +254,7 @@ namespace ZaropaMVC.Controllers
 
         //
         // GET: /Manage/SetPassword
+        [Authorize(Roles = "none")]
         public ActionResult SetPassword()
         {
             return View();

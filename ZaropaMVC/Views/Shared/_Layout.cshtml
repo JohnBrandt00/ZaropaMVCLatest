@@ -3,42 +3,165 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="icon" href="@Url.Content("~/favicon.ico")"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">  
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+<body class="zaropa-page-background zaropa-body-font zaropa-text-color-white" style="background-image:url('/Content/test.png');">
+
+    <header>  
+
+        <nav id ="nav" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+            <a class="navbar-brand" href="#"><strong>Zaropa</strong></a>
+            @*<img src="~/Content/ZaropaLogo.png"/>*@
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        @*<a class="nav-link" href="~/" data-easing="easeInOutCubic">Home <span class="sr-only">(current)</span></a>*@
+                        @Html.ActionLink("Home", "Index","Home",null,new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack px-3 z-depth-0" })
+                    </li>
+                    <li class="nav-item">
+                        @*<a class="nav-link" data-easing="easeInOutCubic" href="~/#aboutus">About Us</a>*@
+                        @Html.ActionLink("Men's Outfits", "ProductPage", "Products", new { genders = ZaropaMVC.Entities.Genders.Men }, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack  px-3 z-depth-0" })
+                    </li>
+                    <li class="nav-item">
+                        @*<a class="nav-link" data-easing="easeInOutCubic" href="~/#aboutus">About Us</a>*@
+                        @Html.ActionLink("Women's Outfits", "ProductPage", "Products", new { genders = ZaropaMVC.Entities.Genders.Women }, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack  px-3 z-depth-0" })
+                    </li>
+                    <li class="nav-item">
+                        @*<a class="nav-link" data-easing="easeInOutCubic" href="~/#aboutus">About Us</a>*@
+                        @Html.ActionLink("About Us","About","Home",null,new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack  px-3 z-depth-0" })
+                    </li>
+           
+                    <li class="nav-item">
+                        @*<a class="nav-link" data-easing="easeInOutCubic" href="~/#aboutus">About Us</a>*@
+                        @Html.ActionLink("Contact Us", "Contact", "Home", null, new { @class = "btn m-0 mx-1 zaropa-gradiant-redblack  px-3 z-depth-0" })
+                    </li>
+
+                    @if (User.IsInRole("Administrator")) { 
+                    <li class="nav-item">
+
+                        <div class="dropdown show">
+                            <a class="btn dropdown-toggle m-0 mx-1 zaropa-gradiant-redblack  px-3 z-depth-0" id="AdminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administration
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="AdminDropdown">
+                                @Html.ActionLink("Tiers", "Index", "Tiers", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Shoes", "Index", "Shoes", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Products", "Index", "Products", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Users", "Index", "Admin", null, new { @class = "nav-link" })
+                                @Html.ActionLink("Sales (WIP)", "Index", "Sales", null, new { @class = "nav-link danger-color" })
+                            </div>
+                        </div>
+
+                    </li>
+                    }
+
+
+                @*    <li class="nav-item">
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Tiers", "Index", "Tiers", null, new { @class = "nav-link" })
+                        }
+                    </li>
+                    <li class="nav-item">
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Shoes", "Index", "Shoes", null, new { @class = "nav-link" })
+                        }
+                    </li>
+                    <li class="nav-item">
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Products", "Index", "Products", null, new { @class = "nav-link" })
+                        }
+                    </li>*@
+                    <li class="nav-item">
+                        @Html.Partial("_LoginPartial")
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
+        </nav>
+
+       
+
+    </header>
+
+
+
+    <div class="container-fluid mt-3 pt-4 w-100 h-100">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="grey-text font-italic">
+
+           
+            <!-- Modal -->
+            <div class="modal fade" id="SnapchatModal" tabindex="-1" role="dialog" aria-labelledby="SnapchatModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="SnapchatModalLabel">Snapchat Snapcode</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body justify-content-center text-center">
+                            <img class="img-fluid mx-auto" src="~/Content/Snapcode.png" alt="Snapcode"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary mx-auto" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="text-center"> 
+                <a href="https://twitter.com/officialzaropa" class="zaropa-social-media-link"><i class="fa fa-twitter-square fa-4x" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/OfficialZaropa/" class="zaropa-social-media-link"><i class="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
+                <a href="" class="zaropa-social-media-link" data-toggle="modal" data-target="#SnapchatModal"><i class="fa fa-snapchat-square fa-4x" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/officialzaropa/?hl=en" class="zaropa-social-media-link"><i class="fa fa-instagram fa-4x" aria-hidden="true"></i></a>
+            </div>
+            <div class="text-center">
+                Disclaimer: This website is for educational purposes only<br />
+                No products or services are real <br />
+                Part of Virtual Enterprise International
+            </div>
+
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        var easeInOutCubic = new SmoothScroll('[data-easing="easeInOutCubic"]', { easing: 'easeInOutCubic' });
+        $(document).ready(function () { wow = new WOW().init(); } );
+
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $("nav");
+                $nav.toggleClass('top-nav-collapse', $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
+    <script src="~/Content/snowfall.jquery.js">
+    </script>
+    @*<script>
+
+        $(document).snowfall();
+
+    </script>*@
 </body>
 </html>

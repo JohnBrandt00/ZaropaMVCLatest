@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ZaropaMVC.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
+
 
 namespace ZaropaMVC.Controllers
 {
@@ -57,6 +60,8 @@ namespace ZaropaMVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            CreateAdminIfNeeded();
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -481,5 +486,53 @@ namespace ZaropaMVC.Controllers
             }
         }
         #endregion
+        #region public ApplicationRoleManager RoleManager
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+        #endregion
+        // Add CreateAdminIfNeeded
+        #region private void CreateAdminIfNeeded()
+        private void CreateAdminIfNeeded()
+        {
+            // Get Admin Account
+            string AdminUserName = ConfigurationManager.AppSettings["AdminUserName"];
+            string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+            Console.Write(AdminUserName);
+            // See if Admin exists
+            var objAdminUser = UserManager.FindByEmail(AdminUserName);
+
+            if (objAdminUser == null)
+            {
+                //See if the Admin role exists
+                if (!RoleManager.RoleExists("Administrator"))
+                {
+                    // Create the Admin Role (if needed)
+                    IdentityRole objAdminRole = new IdentityRole("Administrator");
+                    RoleManager.Create(objAdminRole);
+                }
+
+                // Create Admin user
+                var objNewAdminUser = new ApplicationUser { UserName = AdminUserName, Email = AdminUserName };
+               var AdminUserCreateResult = UserManager.Create(objNewAdminUser, AdminPassword);
+                // Put user in Admin role
+               
+                UserManager.AddToRole(objNewAdminUser.Id, "Administrator");
+                
+            }
+        }
+        #endregion
+
+
+
     }
 }

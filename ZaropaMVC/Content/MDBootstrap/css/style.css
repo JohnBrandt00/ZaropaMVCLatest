@@ -1,0 +1,319 @@
+/* YOUR CUSTOM STYLES */
+
+spring-background{
+    background-image:url('/Content/spring_background.png');
+}
+
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+/*.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}*/
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+.video-container .filter {
+    z-index: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+.video-container video {
+    position: absolute; 
+    z-index: 0;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+
+.imageoverlay {
+    position: absolute;
+    color:white;
+    font-size:3em;
+    font-weight:bolder;
+    top:35%;
+    left:50%;
+    text-align:center;
+    transform:translate(-50%,-30%);
+
+}
+
+@-webkit-keyframes fadeIndelay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIndelay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+ 
+.fadeIndelay {
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-delay: 0.7s;
+    animation-name: fadeIndelay;
+    animation-delay: 0.7s;
+}
+
+
+.zaropa-color-red {
+    background-color: #91171f !important;
+}
+
+.zaropa-color-admin {
+    background-color: rgba(168, 26, 43, 1) !important;
+}
+
+.zaropa-page-background{
+    background-color:#2e3235 !important;
+}
+
+.zaropa-color-employee {
+    background-color: rgb(117, 15, 22) !important;
+}
+
+.zaropa-color-red-rgba {
+    background-color:rgba(143, 19, 34,0.9) !important;
+
+}
+
+.zaropa-color-shop-page-tab-content{
+    background-color:#f6f7ff !important;
+}
+
+
+
+.zaropa-color-egg {
+    background-color:rgb(224, 254, 255) !important;
+}
+
+
+@font-face {
+    font-family: 'Rubik-Light';
+    src: url('/Content/MDBootstrap/font/Rubik/Rubik-Light.ttf') format('truetype');
+}
+
+.zaropa-body-font {
+    font-family: Rubik-Light !important;
+}
+
+.zaropa-hero-image{
+    width:100%;
+    height:100%;
+}
+
+.nav-link:hover{
+
+background-color:rgb(183, 63, 84);
+}
+
+.zaropa-text-color-white{
+   color:ghostwhite !important;
+}
+
+.zaropa-text-color-red {
+    color: #91171f !important;
+}
+
+.zaropa-text-color-darkerwhite {
+    color:darkgrey !important;
+}
+
+
+.anch {
+    padding-top:50px;
+    margin-top:50px;
+    visibility:hidden;
+}
+
+                
+.view {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg")no-repeat center center;
+    background-size: cover;
+}
+
+.navbar {
+    background-color: rgba(143, 19, 34,0.9);
+}
+
+.top-nav-collapse {
+    background-color: rgba(143, 19, 34,0.9);
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #4285F4;
+    }
+}
+
+
+ .logout-button {
+    padding:8px;
+    color:white;
+}
+
+.zaropa-gradiant-redblack {
+    background-color: #8E0E00;
+    background: -webkit-linear-gradient(to top right #222322, #630b11);
+    background: linear-gradient(to top right, #222322, #630b11);
+}
+
+
+.zaropa-color-rgbashopred{
+    background-color:#ffffff !important;
+}
+
+.zaropa-a-override{
+    color:deepskyblue !important;
+}
+
+.zaropa-a-override:hover {
+        color: midnightblue !important;
+    }
+
+.form-control{
+    color:white !important;
+}
+
+.btn-outline-black:hover{
+    background-color:gray !important;
+}
+
+ 
+.zaropa-social-media-link{ 
+    color:grey;
+}
+.zaropa-social-media-link:hover{
+    color:darkgrey;
+}
+
+@media only screen and (max-width: 768px)  {
+    .navbar {
+        background-color: #91171f !important;
+    }
+}
+
+.btn-outline-black:active,.btn-outline-black.active {
+    background-color: rgba(117, 15, 22,0.3) !important;
+    color:black !important;
+}
+
+
+.sale-completed {
+    border-top: 5px solid #19bf29;
+}
+
+    .sale-completed:after {
+        content: "Sale Completed";
+    }
+
+    .sale-completed i {
+        color: #19bf29;
+    }
+
+.sale-contacted {
+    border-top: 5px solid #33b5e5;
+}
+
+    .sale-contacted:after {
+        content: "Contacted Firm";
+    }
+
+    .sale-contacted i {
+        color: #33b5e5;
+    }
+
+
+.sale-negotation {
+    border-top: 5px solid #9b59b6;
+}
+
+    .sale-negotation:after {
+        content: "Negotiating Deal";
+    }
+
+    .sale-negotation i {
+        color: #9b59b6;
+    }
+
+
+.sale-pending {
+    border-top: 5px solid #ff9600;
+}
+
+    .sale-pending:after {
+        content: "Sale Pending";
+    }
+
+    .sale-pending i {
+        color: #ff9600;
+    }
+
+.sale-rejected {
+    border-top: 5px solid #bf1919;
+}
+
+    .sale-rejected:after {
+        content: "Sale Rejected";
+       
+    }
+
+    .sale-rejected i {
+        color: #bf1919;
+    }
+
+.no-padding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.sale {
+    height: 100%;
+    line-height: 50px;
+    font-size: 1.2em;
+    padding-right: 0;
+}
+ 
+    .sale i:before {
+        padding-left: 10px;
+        padding-right: 10px;
+        
+    }
+
+.zaropa-seasonal-btncolor {
+    background: linear-gradient(45deg,rgba(255, 118, 117,0.3),rgba(116, 185, 255,0.3),rgba(255, 234, 167,0.3));
+}
+
+.zaropa-seasonal-productpagecolor {
+    background-color: #e8f9f4;
+}

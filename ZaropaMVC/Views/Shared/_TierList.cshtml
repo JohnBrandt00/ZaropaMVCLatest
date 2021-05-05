@@ -1,0 +1,260 @@
+﻿@model IEnumerable<ZaropaMVC.Entities.Tiers>
+
+@*  *@
+@*<div class="container-fluid p-0 ml-0 w-100 h-100">
+
+    <div class="container-fluid zaropa-gradiant-redblack float-left d-flex flex-column" style="max-width:300px;height:1000px;">
+
+        <div class="container-fluid mx-0 mx-auto mt-1">
+            <div class="list-group" id="ProductList" roles="tablist">
+                @foreach (var tiers in Model)
+            {
+                foreach (var shoes in tiers.Shoes)
+                {
+                        <a class="list-group-item list-group-item-action mx-auto my-3 transparent border-0 text-white text-center" data-toggle="list" href="#shoe_@shoes.Id" role="tab">@shoes.Name</a>
+                    }
+                }
+            </div>
+        </div>*@
+
+        @*  *@
+
+        @*@foreach (var tiers in Model)
+        {
+            <div class="container-fluid m-0 mx-auto mt-1">
+                <h3>@tiers.Name</h3>
+               <div class="list-group" id="ProductList" role="tablist">
+                    @foreach (var shoes in tiers.Shoes)
+                    {
+                    <a class="list-group-item list-group-item-action mx-auto my-3 transparent border-0 text-white text-center" data-toggle="list" href="#shoe_@shoes.Id" role="tab">@shoes.Name</a>
+                    }
+                </div>
+            </div>
+        }*@
+
+        @*  *@
+        @*</div>
+    <div class="tab-content d-flex p-0  h-100" >
+        @foreach (var tiers in Model)
+        {
+            foreach (var shoes in tiers.Shoes)
+            {
+                <div class="tab-pane fade zaropa-color-shop-page-tab-content p-2 w-100 h-100 text-center" id="shoe_@shoes.Id" role="tabpanel">
+                    @foreach (var products in shoes.Products)
+                    {
+
+                       
+                        <div class="card d-inline-block zaropa-color-employee m-2 wow zoomIn" style="width:300px;height:560px; vertical-align:top;" id="@products.Id">
+                                    <img class="img-fluid" src="@Url.Content("~/Images/"+@products.ImageUrl)" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h2 class="card-title">@products.Name</h2>
+                                        <h3 class="card-title">$@products.Price</h3>
+                                        <p class="card-text zaropa-text-color-white">@products.Description</p>
+                                        <a href="#" class="btn btn-primary align-bottom">Subscribe to @tiers.Name</a>
+                                    </div>
+
+                            </div>
+
+                    } 
+                </div>
+
+            }
+        }
+                    </div>*@
+    @*  *@
+    @*@foreach (var tiers in Model) 
+    {
+        <div class="container-fluid mt-3 mb-3">
+            @foreach(var shoes in tiers.Shoes) { 
+           
+                <h2 class="zaropa-color-red mb-0 pb-0">@shoes.Name</h2>
+                <div class="container-fluid elegant-color-dark mt-0" >
+                    @foreach (var products in shoes.Products)
+                    {
+
+                        <div class="card mx-auto d-inline-block zaropa-color-employee mt-3 mb-3 ml-3 mr-3 " style="width:300px; height:550px;max-height:550px;">
+                            <img class="img-fluid" src="@Url.Content("~/Images/"+@products.ImageUrl)" alt="Card image cap">
+                            <div class="card-body">
+ 
+                                <h2 class="card-title">@products.Name</h2>
+                                  <h3 class="card-title">$@products.Price</h3>
+                                <p class="card-text zaropa-text-color-white">@products.Description</p>
+                                <a href="#" class="btn btn-primary">Subscribe to @tiers.Name</a>
+                            </div>
+
+                        </div>
+
+                     
+                    }
+                </div>
+            
+            }
+        </div>
+    }*@
+
+
+    @*  *@
+@*</div>*@
+
+<div class="container mt-5" style="min-width:940px ">
+        <div class="row">
+            <div class="col-3 zaropa-color-shop-page-tab-content">
+                <h1 class="text-center black-text mt-3 black-text">Zaropa</h1>
+                 <hr />
+           <div class="list-group" id="ProductList" roles="tablist">
+                    @foreach (var tiers in Model)
+                    {
+                        <h4 class="black-text mt-1 mb-0 ml-1 font-weight-bold">@tiers.Name</h4>
+                        <h6 class="black-text mt-1 mb-1 ml-4 font-weight-bold">@ViewBag.gender</h6>
+                                    foreach (var shoes in tiers.Shoes.Where(eh => eh.Genders == ViewBag.gender))
+                                    {
+                            <a class=" btn btn-outline-black list-group-item list-group-item-action mx-auto text-center mt-0 mb-1 z-depth-0 py-2 zaropa-seasonal-btncolor" data-toggle="list" href="#shoe_@shoes.Id" role="tab">@shoes.Name</a>
+                        }
+                        @*<h6 class="black-text mt-1 mb-1 ml-4 font-weight-bold">Womens</h6>
+                        foreach (var shoes in tiers.Shoes.Where(shoe => shoe.Genders == ZaropaMVC.Entities.Genders.Women))
+                        {
+                            <a class=" btn btn-outline-black list-group-item list-group-item-action mx-auto text-center mt-0 mb-1 z-depth-0 py-2 px-2" data-toggle="list" href="#shoe_@shoes.Id" role="tab">@shoes.Name</a>
+                        }*@
+                        <hr class="mx-5 black my-1"/>
+                    }
+                </div>
+
+
+            </div>
+
+            <div class="col-9 zaropa-color-employee">
+
+                <div id="carousel-example-1z" class="carousel slide carousel-fade mt-3" data-ride="carousel">
+                    <!--Indicators-->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                        @*<li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-1z" data-slide-to="2"></li>*@
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="~/Content/shop_news_4.png" alt="First slide">
+                        </div>
+                        @*<!--/First slide-->
+                        <!--Second slide-->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="~/Content/shop_news_2.png" alt="Second slide">
+                        </div>
+                        <!--/Second slide-->
+                        <!--Third slide-->
+                        <div class="carousel-item">
+                            <img class="d-block w-100 img-fluid" src="~/Content/shop_news_3.png" alt="Third slide">
+                        </div>*@
+                        <!--/Third slide-->
+                    </div>
+                    <!--/.Slides-->
+                    <!--Controls-->
+                    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <!--/.Controls-->
+                </div>
+
+                @* Begin shop stuff here *@
+              
+                <hr class="white w-50"/>
+
+                <div class="row my-3">
+
+
+                    @*@foreach (var tiers in Model)
+                    {
+                        foreach (var shoes in tiers.Shoes)
+                        {
+                            foreach (var product in shoes.Products)
+                            {
+
+
+                                <div class="col-lg-4 col-md-6 mb-4"> 
+                                    <div class="card h-100" >
+                                        <div style="min-height:350px;max-height:350px;">
+                                            <img class="card-img-top img-fluid" src="@Url.Content("~/Images/" + @product.ImageUrl)" alt="" style="max-height:350px;">
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                                <a href="#">@product.Name</a>
+                                            </h4>
+                                            <h5>$24.99</h5>
+                                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            @*<small class="text-muted">★ ★ ★ ★ ☆</small>*
+                                            <a class="btn zaropa-gradiant-redblack">Subscribe</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                    }*@
+
+
+                    <div class="tab-content d-flex p-0 h-100 w-100 m-3 ">
+                        @foreach (var tiers in Model)
+                        {
+                            foreach (var shoes in tiers.Shoes)
+                            {
+                                <div class="tab-pane fade p-2 w-100 h-100 text-center" id="shoe_@shoes.Id" role="tabpanel">
+                                    <div class="row justify-content-center">
+                                        @foreach (var products in shoes.Products)
+                                        {
+
+                                            <div class="col-5 py-2">
+                                                <div class="card h-100 my-3">
+                                                    <div style="max-height:17rem;">
+                                                        <img class="card-img-top img-fluid" src="@Url.Content("~/Images/" + @products.ImageUrl)" alt="" style="max-height:18rem;" >
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">
+                                                            @*<a href="#"></a>*@
+                                                            @Html.ActionLink(" "+products.Name,  "ShowProduct", "Products", new { id = products.Id }, new { @class =""})
+                                                        </h4>
+                                                        @*<h5 class="black-text">Subscription price: $@tiers.Price</h5>
+                                                        <p class="card-text">@products.Description</p>*@
+                                                    </div>
+                                                    <div class="card-footer text-center black-text">
+                                                                    @*<a class="btn zaropa-gradiant-redblack">Subscribe</a>*@
+                                                        @Html.ActionLink("View More","ShowProduct","Products",new { id = products.Id },new {@class="btn zaropa-gradiant-redblack" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                            }
+                                                                </div>
+                                                        </div>
+
+                                                    }
+                                                }
+
+
+
+
+
+                                            </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+    </div>
+<script>
+
+    $(function () {
+        $('#ProductList a:first').tab('show')
+    })
+</script>
